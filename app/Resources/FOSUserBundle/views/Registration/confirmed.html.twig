@@ -1,0 +1,66 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}confirmer{% endblock %}
+{% block body%}
+
+<div class="header_bottom_right">
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+
+
+    {% if app.session is not empty %}
+
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+    {% endif %}
+{% endblock fos_user_content %}
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Bienvenue {{app.user.username}}:</h2> <p>{{ ''|trans({'%username%': user.username}) }}
+
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+
+ 	<!-- Page Head -->
+
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                Description.......................... <a href="#" class="alert-link">Accueil</a>.
+                            </div>
+                         		<div id="main-content">
+
+			<ul class="shortcut-buttons-set">
+
+				<li><a class="shortcut-button" href="{{ url('animal_lister', {'name': 'animal_lister'}) }}"><span>
+					<img src="{{asset('images/icons/pencil_48.png')}}" alt="icon" /><br />
+					G&eacute;rer les animaux
+				</span></a></li>
+
+
+			<li><a class="shortcut-button" href="#"><span>
+					<img src="{{asset('images/icons/paper_content_pencil_48.png')}}" alt="icon" /><br />
+					Espace personnel
+				</span></a></li>
+
+				
+
+				<li><a class="shortcut-button" href="{{ url('quik_email', {'name': 'quik_email'}) }}" rel="modal"><span>
+					<img src="{{asset('images/icons/comment_48.png')}}" alt="icon" /><br />
+					Envoyer un Email
+				</span></a></li>
+
+			</ul><!-- End .shortcut-buttons-set -->
+</div>
+                        </div>
+                        <!-- .panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+
+
+			{% endblock%}

@@ -1,0 +1,36 @@
+Animal_address_index:
+    path:  /
+    defaults: { _controller: AnimalBundle:Address:index }
+    methods: GET
+
+Animal_address_add:
+    path:  /add
+    defaults: { _controller: AnimalBundle:Address:add }
+
+Animal_address_show:
+    path:  /{id}
+    defaults: { _controller: AnimalBundle:Address:show }
+    methods: GET
+    requirements:
+        id: \d+
+
+Animal_address_invite:
+    path:  /{id}/invite
+    defaults: { _controller: AnimalBundle:Address:invite }
+    methods: POST
+    requirements:
+        id: \d+
+
+Animal_address_delete:
+    path:  /{id}/delete
+    defaults: { _controller: AnimalBundle:Address:delete }
+    methods: POST
+    requirements:
+        id: \d+
+
+Animal_address_edit:
+    path:  /{id}/edit
+    defaults: { _controller: AnimalBundle:Address:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+

@@ -1,0 +1,15 @@
+animal_index:
+    path:  /
+    defaults: { _controller: AnimalBundle:Animal:index }
+
+animal_compte:
+    resource: routing/compte.yml
+    prefix: /mon-compte
+
+animal_profil:
+    resource: routing/profil.yml
+    prefix: /profil
+
+animal_address:
+    resource: routing/address.yml
+    prefix: /address

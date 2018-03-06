@@ -1,0 +1,12 @@
+{% block subject %}
+    Bienvenue :
+{% endblock %}
+
+{% block body_html %}
+bienvenue dans notre site web *carnet d'adresse pour marsupilami* :
+
+    Email : {{ user.email }}
+    Username : {{ user.username }}
+    Password : {{ user.plainPassword }}
+    Activation Link : {{confirmationUrl}}
+{% endblock %}

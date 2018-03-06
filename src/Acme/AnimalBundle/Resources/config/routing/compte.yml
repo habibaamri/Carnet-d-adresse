@@ -1,0 +1,7 @@
+animal_compte_index:
+    path:  /
+    defaults: { _controller: AnimalBundle:Compte:index }
+
+animal_inscription_profil:
+    path:  /inscription/suivant
+    defaults: { _controller: AnimalBundle:Inscription:createProfil }

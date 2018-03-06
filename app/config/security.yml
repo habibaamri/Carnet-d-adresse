@@ -1,0 +1,49 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_CHERCHEUR: ROLE_CHERCHEUR
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        admin:
+            pattern:            /admin(.*)
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                check_path:     /admin/login_check
+                always_use_default_target_path: true
+                default_target_path: administrateur
+            logout:
+                path:           admin_logout
+                target:         /admin/login
+            anonymous:    true
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                default_target_path: /register/confirmed
+                login_path:  fos_user_security_login
+                check_path:  fos_user_security_check
+                csrf_provider: form.csrf_provider
+            logout:
+                   path:   fos_user_security_logout
+                   target: base
+            anonymous:    true
+
+    access_control:
+        - { path: ^/admin/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/register$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/group, role: ROLE_CHERCHEUR }

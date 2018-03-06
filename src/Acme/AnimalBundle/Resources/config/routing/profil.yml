@@ -1,0 +1,3 @@
+animal_profil_index:
+    path:  /
+    defaults: { _controller: AnimalBundle:Profil:index }
